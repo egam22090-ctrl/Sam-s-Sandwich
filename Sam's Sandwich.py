@@ -26,7 +26,7 @@ def cheese_selection():
     while count < len(cheese_list):
         print(count+1,"",cheese_list[count])
         count+=1
-    cheese_selected=int(input("Which bread do you want? Enter a number: "))
+    cheese_selected=int(input("Which cheese do you want? Enter a number: "))
     return cheese_list[cheese_selected-1]
 
 
@@ -37,4 +37,4 @@ print(f"Your selected  bread: {bread_choice}")
 meat_choice=meat_selection()
 print(f"Your selected meat was: {meat_choice}")
 cheese_choice=cheese_selection()
-print(f"Your selcted bread: {cheese_choice}")
+print(f"Your selcted cheese was: {cheese_choice}")
