@@ -1,0 +1,21 @@
+def salads_selection():
+    salad_list = ["Lettuce", "Tomato", "Carrot", "Cucumber", "Onions"]
+    count = 0
+    print('We have the following veggies, select as many as you want')
+    while count< len(salad_list):
+        print(count, " ",salad_list[count])
+        count+=1
+    print("Press ENTER when you have finished choosing your salads")
+    veg_added = "" #will hold a string of more than one time
+    selected_salad= " " #prompts the user to enter a number in to a selected sald\ad
+
+    while selected_salad != "" : #if enter is not pressed it will keep prompting you to select
+        selected_salad = input(f"You have selected: {veg_added}\nWhat salad do you want? ")
+        if selected_salad != "":
+            selected_salad=int(selected_salad)
+            #this variable keeps adding on each selected item from salad list
+            veg_added=veg_added + " " + salad_list[selected_salad]
+    return veg_added.strip() #removes empty space at start of the string
+
+
+salads_selection()
