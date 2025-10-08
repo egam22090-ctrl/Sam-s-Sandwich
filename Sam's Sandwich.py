@@ -1,5 +1,27 @@
 import datetime
 
+def force_number(message,lower,upper):
+    while True:
+        try:
+            number =int(input(message))
+            if number>=lower and number<=upper:
+                break
+            else:
+                print(f"Please enter a number between {lower} - {upper}")
+        except:
+            print("Error- only type numbers please")
+    return number
+
+def force_name(message,lower,upper):
+    while True: #This is an infinte loop
+        name=str(input(message)).title() #Askimg for and storing the users name and adding a capital letter
+        if len(name)>=lower and len(name)<=upper and name.isalpha():#Providing paramters for the length of the users name and ensuring it's alphabetical
+            break  #the loop is broken if the condiition above is met
+        else:
+            print("Invalid name")#Sends the user an error message
+    return name #returns a valid name back to the variable
+
+
 #This program runs a sandwich ordering service like 'Subway'
 def bread_selection():
     bread_list = ["White", "Brown", "Italian", "Germany"]
@@ -8,7 +30,7 @@ def bread_selection():
     while count < len(bread_list):
         print(count+1,"",bread_list[count])
         count+=1
-    bread_selected=int(input("Which bread do you want? Enter a number: "))
+    bread_selected=force_number("Which bread do you want? Enter a number: ",1,len(bread_list))
     return bread_list[bread_selected-1]
 
 def meat_selection():
@@ -18,7 +40,7 @@ def meat_selection():
     while count < len(meat_list):
         print(count+1,"",meat_list[count])
         count+=1
-    meat_selected=int(input("Which bread do you want? Enter a number: "))
+    meat_selected=force_number("Which meat do you want? Enter a number: ",1,len(meat_list))
     return meat_list[meat_selected-1]
 
 def cheese_selection():
@@ -28,7 +50,7 @@ def cheese_selection():
     while count < len(cheese_list):
         print(count+1,"",cheese_list[count])
         count+=1
-    cheese_selected=int(input("Which cheese do you want? Enter a number: "))
+    cheese_selected=force_number("Which cheese do you want? Enter a number: ",1,len(cheese_list))
     return cheese_list[cheese_selected-1]
 
 def salads_selection():
@@ -62,11 +84,25 @@ def output_textfile(first_name, cell_phone,sandwich_order):
     outFile.write(f"\nDate of booking: {date_time}")
     for item in sandwich_order:
         print(item)
-        outFile.write(f"\n End of order: {date_time}")
-        outFile.write("\n")
-        outFile.write("\n")
+        outFile.write(f"\n End of order: {date_time}") 
+    print(f"***End of order : {date_time} ***")
+    outFile.write("\n")
+    outFile.write("\n")
+    outFile.close()
 
-
+first_name=force_name("What is your first name: ",2,15)
+cell_phone=int(input("What is your cellphone: "))
+bread_choice=bread_selection()
+meat_choice=meat_selection()
+cheese_choice=cheese_selection()
+salad_choice=salads_selection()
+sandwich_order=[]
+sandwich_order.append(first_name)
+sandwich_order.append(cell_phone)
+sandwich_order.append(f"Bread: {bread_choice}")
+sandwich_order.append(meat_choice)
+sandwich_order.append(cheese_choice)
+output_textfile(first_name,cell_phone,sandwich_order)
 
 print("Welcome to Sam's Sandwich Shop")
 bread_choice=bread_selection()
