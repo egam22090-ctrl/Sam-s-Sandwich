@@ -21,6 +21,13 @@ def force_name(message,lower,upper):
             print("Invalid name")#Sends the user an error message
     return name #returns a valid name back to the variable
 
+def force_cellphone_number(message,lower,upper):
+    while True:
+        cellphone = str(input(message).strip())
+        if len(cellphone)>= lower and len(cellphone) <= upper and cellphone.isnumeric():
+            break
+        else:
+            print(f"Please enter a number between {lower} and {upper} digits")
 
 #This program runs a sandwich ordering service like 'Subway'
 def bread_selection():
@@ -56,9 +63,9 @@ def cheese_selection():
 def salads_selection():
     salad_list = ["Lettuce", "Tomato", "Carrot", "Cucumber", "Onions"]
     count = 0
-    print('We have the following veggies, select as many as you want')
+    input('We have the following veggies, select as many as you want')
     while count< len(salad_list):
-        print(count, " ",salad_list[count])
+        print(count+1, " ",salad_list[count])
         count+=1
     print("Press ENTER when you have finished choosing your salads")
     veg_added = "" #will hold a string of more than one time
@@ -85,13 +92,13 @@ def output_textfile(first_name, cell_phone,sandwich_order):
     for item in sandwich_order:
         print(item)
         outFile.write(f"\n End of order: {date_time}") 
-    print(f"***End of order : {date_time} ***")
+    print(f"***End of order : {date_time} ***\n")
     outFile.write("\n")
     outFile.write("\n")
     outFile.close()
 
 first_name=force_name("What is your first name: ",2,15)
-cell_phone=int(input("What is your cellphone: "))
+cell_phone=force_cellphone_number("What is your cellphone number: ",2,10)
 bread_choice=bread_selection()
 meat_choice=meat_selection()
 cheese_choice=cheese_selection()
@@ -100,9 +107,10 @@ sandwich_order=[]
 sandwich_order.append(first_name)
 sandwich_order.append(cell_phone)
 sandwich_order.append(f"Bread: {bread_choice}")
-sandwich_order.append(meat_choice)
-sandwich_order.append(cheese_choice)
-output_textfile(first_name,cell_phone,sandwich_order)
+sandwich_order.append(f"Meat: {meat_choice}")
+sandwich_order.append(f"Cheese: {cheese_choice}")
+sandwich_order.append(f"Salads:{salad_choice}")
+output_textfile(first_name,cell_phone,sandwich_order) 
 
 print("Welcome to Sam's Sandwich Shop")
 bread_choice=bread_selection()

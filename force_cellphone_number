@@ -1,0 +1,10 @@
+def force_cellphone_number(message,lower,upper):
+
+    while True:
+        cellphone = str(input(message).strip())
+        if len(cellphone)>= lower and len(cellphone) <= upper and cellphone.isnumeric():
+            break
+        else:
+            print(f"Please enter a number between {lower} and {upper} digits")
+    
+force_cellphone_number("Enter a cellphone number: ",2,10)
