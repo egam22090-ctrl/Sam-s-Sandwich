@@ -61,26 +61,16 @@ def cheese_selection():
     return cheese_list[cheese_selected-1]
 
 def salads_selection():
-    salad_list = ["Lettuce", "Tomato", "Carrot", "Cucumber", "Onions"]
-    count = 0
-    input('We have the following veggies, select as many as you want')
-    while count< len(salad_list):
-        print(count+1, " ",salad_list[count])
-        count+=1
-    print("Press ENTER when you have finished choosing your salads")
-    veg_added = "" #will hold a string of more than one time
-    selected_salad= " " #prompts the user to enter a number in to a selected sald\ad
-
-    while selected_salad != "" : #if enter is not pressed it will keep prompting you to select
-        selected_salad = input(f"You have selected:{veg_added}\nWhat salad do you want? ")
-        if selected_salad != "":
-            selected_salad=int(selected_salad)
-            #this variable keeps adding on each selected item from salad list
-            veg_added=veg_added + " " + salad_list[selected_salad]
-    return veg_added.strip() #removes empty space at start of the string
-
-
-
+    salad_list = ["Lettuce", "Tomato", "Carrot", "Cucumber", "Onions", "No Salads/Exit"]
+    salad_choice=[] #empty list to hold the selected salads
+    while True:
+        sep= " , "
+        salad_options=int(input(f"We have the following veggies, select as many as you want. {sep.join(salad_list)} \n Your choice: "))
+        salad_choice.append(salad_list[salad_options-1]) #adding the selected salad to the empty list
+        print(f"Your selected salds are {salad_choice}")
+        if salad_options==salad_list[-1]:
+            break
+    return ",".join(salad_choice) #returns a string formatting the options
 
 
 #main program
